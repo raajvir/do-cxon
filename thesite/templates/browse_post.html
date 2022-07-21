@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %} {% if user.is_authenticated %}
+<h1>Browse Ideas</h1>
+
+<div class="container ">
+  <div class="row">
+    {% for post in object_list %}
+    <div class="col-xl-8">
+    <div class ='card m-4 shadow'>
+        <div class='card-body'>
+
+                <div class="py-2">
+                    <div class="">
+                        <div class="d-flex">
+                            <div class='mr-4'>
+                                {% if post.header_image %}
+                              <img
+                                src="{{ post.header_image.url }}"
+                                width="240"
+                                height="140"
+                              />
+                              {% endif %}
+                            </div>
+                            <div style='display:flex;     flex-direction: column;'>
+                                <a href='{% url 'article-detail' post.pk %}'><h2 >{{post.title}}</h2></a>
+                                <span >{{ post.category }} - {{ post.category2 }} - {{ post.category3 }} - {{post.author.first_name }} {{ post.author.last_name }} </span>
+                                  <span class="text1">{{post.post_date }}</span>
+                            </div>
+                        </div>
+                      
+                    </div>
+                  </div>
+              {% comment %} <li>
+                <a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> <br />
+                - {{ post.category }} - {{ post.category2 }} - {{ post.category3 }} - {{
+                post.author.first_name }} {{ post.author.last_name }} - {{
+                post.post_date }}<br />
+                {{ post.snippet|slice:":200"|safe }}
+                <!--{{ post.description|slice:":200"|safe }}-->
+              </li>
+        
+              <!--{% if total_likes != 0 %} 
+                    - {{ total_likes }} Likes
+                {% else %}
+                    - 0 Likes
+                {% endif %}--> {% endcomment %}
+        
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+</div>
+</div>
+
+{% else %} You need to login to access this page {% endif %} {% endblock %}

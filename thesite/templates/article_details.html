@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ post.title_tag }}
+{% endblock %}
+
+
+{% block content %}
+    <!--current user: {{ user.id }}
+    post author: {{ post.author.id }}-->
+    <h1>{{ post.title }}</h1>
+    <small>By: {{ post.author.first_name }} {{ post.author.last_name }} - {{post.post_date}}</small><br/>
+    <hr>
+    <br/>
+    {% if post.header_image %}
+        <img src="{{ post.header_image.url }}" width='300' height='200'>
+    {% endif %}
+    <br/>
+    Category1: {{ post.category }}
+    <br/>
+    Category2: {{ post.category2 }}
+    <br/>
+    Category3: {{ post.category3 }}
+    <br/>
+    Description: {{ post.description|safe }}
+    <br/>
+    Size: {{ post.size }} People
+    <br/>
+    Budget: ${{ post.budget }}
+    <br/>
+    Position: {{post.position}}
+    <br />
+    <br />
+    
+    <h6>Gallery</h6>
+
+
+    <div id="carouselExampleControls" class="carousel slide col-xl-6" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            {% if post.image_1 %}
+                <img src="{{ post.image_1.url }}" width='300' height='300' class="d-block w-100">
+            {% endif %}
+          </div>
+          <div class="carousel-item">
+            {% if post.image_2 %}
+                <img src="{{ post.image_2.url }}" width='300' height='300' class="d-block w-100">
+            {% endif %}
+          </div>
+          <div class="carousel-item">
+            {% if post.image_3 %}
+                <img src="{{ post.image_3.url }}" width='300' height='300' class="d-block w-100">
+            {% endif %}
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+            <br/><br/>
+            <a href="{% url 'update_post' post.pk %}" class="btn btn-secondary">Edit</a>
+            <a href="{% url 'delete_post' post.pk %}" class="btn btn-secondary">Delete</a>
+            <a href="{% url 'connections' post.pk %}" class="btn btn-secondary">Connection</a>
+        {% endif %}
+        {% if user.id != post.author.id%}
+        <br/>
+        <a href="{% url 'collaborate' post.pk %}" class="btn btn-secondary">request to collaborate</a>
+        {% endif %}
+    {% endif %}
+    <br/><br/>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    <br/><br/>
+
+    <hr>
+    <br/>
+    <form action="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            {% if liked %}
+                <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger btn-sm">Unlike</button>
+            {% else %}
+                <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Like</button>
+            {% endif %}
+        {% else %}
+            You need to login to access this page
+        {% endif %}
+            {% if total_likes != 0 %} 
+                - {{ total_likes }} Likes
+            {% else %}
+                - 0 Likes
+            {% endif %}
+    </form>
+
+    <br/><br/>
+
+    <div class="card mb-3">
+        <div class="row no-gutters">
+        <div class="col-md-2">
+            {% if post.author.profile.profile_pic %}
+                <img src="{{ post.author.profile.profile_pic.url }}" width=140 height=140 class="rounded-circle">
+            {% else %}
+                <img src="{% static 'thesite/images/default_profile_pic.jpg' %}" width=140 height=140 class="rounded-circle">
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+            <h5 class="card-title">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
+            <p class="card-text"><small class="text-muted">
+
+                <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile Page</a>
+                {% if post.author.profile.website_url %}
+                    | <a href="{{ post.author.profile.website_url }}">Website</a>
+                {% endif %}
+                {% if post.author.profile.facebook_url %}
+                    | <a href="{{ post.author.profile.facebook_url }}">Facebook</a>
+                {% endif %}
+                {% if post.author.profile.twitter_url %}
+                    | <a href="{{ post.author.profile.twitter_url }}">Twitter</a>
+                {% endif %}
+                {% if post.author.profile.instagram_url %}
+                    | <a href="{{ post.author.profile.instagram_url }}">Instagram</a>
+                {% endif %}
+                {% if post.author.profile.pinterest_url %}
+                    | <a href="{{ post.author.profile.pinterest_url }}">Pinterest</a>
+                {% endif %}
+                {% if post.author.profile.linkedin_url %}
+                    | <a href="{{ post.author.profile.linkedin_url }}">Linkedin</a>
+                {% endif %}</small></p>
+            <p class="card-text">{{ post.author.profile.bio }}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}

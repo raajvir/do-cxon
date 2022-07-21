@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Discussion lists
+{% endblock %}
+
+
+{% block content %}
+    
+    <br/>
+    {% if discussions%}
+    <ul>
+        {% for dis in discussions%}
+        
+            <li>
+                <a href='{% url "messages" dis.id %}' >{{dis.post.title}} ({% if dis.sender.username != request.user.username %} {{ dis.sender.username }} {% else %} {{ dis.post.author.username}} {% endif %})</a>
+            </li>
+        
+        {% endfor %}
+    </ul>
+    {% else %}
+    There is no discussions
+    {% endif %}
+
+
+
+{% endblock %}

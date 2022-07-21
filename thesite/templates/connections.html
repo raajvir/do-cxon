@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% load static %} {% block title %} Connections
+{%endblock %} {% block content %}
+
+<br />
+{% if not msg%}
+<h1 style="text-align: center">Connections</h1>
+
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-xl-4 d-flex justify-content-center">
+      <div>
+        <h4>Category 1</h4>
+        <ul>
+          {% for item in result.cat_1 %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col-xl-4 d-flex justify-content-center">
+      <div>
+        <h4>Category 2</h4>
+        <ul>
+          {% for item in result.cat_2 %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col-xl-4 d-flex justify-content-center">
+      <div>
+        <h4>Category 3</h4>
+        <ul>
+          {% for item in result.cat_3 %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% else %} {{msg}} {% endif %} {% endblock %}

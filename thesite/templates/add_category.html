@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create a New Tag
+{% endblock %}
+
+{% block content %}
+
+  
+{% if user.is_authenticated %}  
+    <h1>Add Tag</h1>
+    <br/>
+    <br/>
+
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Add Tag</button>
+        </form>
+    </div>
+
+{% else %}
+
+You need to login to access this page
+
+{% endif %}
+
+
+{% endblock %}
+
+
+

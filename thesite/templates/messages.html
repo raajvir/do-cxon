@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% load static %} {% block title %} Messages {%endblock %} {% block content %}
+
+<br />
+{% if not msg%}
+<h1 style='text-align:center;'>Discussion</h1>
+
+<div class="container mt-5">
+  <div class='row'>
+    <div class="col-xl-6">
+        {% for item in discussion.messages.all %}
+        <div class="py-2">
+          <div class="second py-2 px-2">
+            <span class="text1">{{item.message}}</span>
+            <div class="d-flex justify-content-between py-1 pt-2">
+              <div>
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                  width="40"
+                  height="40"
+                  style="border-radius: 20px; margin-right: 10px"
+                /><span class="text2">{{item.user.username}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col-xl-6">
+        <div class="form-group" >
+            <div class="">
+                <form method="POST" action="{% url 'messages' discussion.id  %}">
+                  {% csrf_token %}
+        
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Reply</label>
+                    <textarea
+                      rows="4"
+                      col="3"
+                      class="form-control"
+                      name="rply"
+                    ></textarea>
+                  </div>
+                  <br />
+                  <button class="btn btn-secondary">Submit</button>
+                </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% else %} {{msg}} {% endif %} {% endblock %}

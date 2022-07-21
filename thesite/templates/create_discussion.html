@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+New Discussion
+{% endblock %}
+
+
+{% block content %}
+    
+    <br/>
+    {% if not msg%}
+    <div class="form-group">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6">
+                    <form method="POST" action="{% url 'collaborate' postID %}">
+                        {% csrf_token %}
+                
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Message</label>
+                            <textarea rows="8" class="form-control" name="msg"></textarea>
+                        </div>
+                        <br/>
+                        <button class="btn btn-secondary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    {{msg}}
+    {% endif %}
+
+
+
+{% endblock %}
