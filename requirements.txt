@@ -1,0 +1,14 @@
+
+Django==3.2.14
+django-heroku==0.3.1
+gunicorn==20.1.0
+Jinja2==2.11.2
+SQLAlchemy==1.3.16
+sqlparse==0.4.2
+sympy==1.5.1
+tables==3.6.1
+tblib==1.6.0
+Werkzeug==1.0.1
+whitenoise==6.2.0
+Pillow==9.2.0
+heroku==0.1.4
