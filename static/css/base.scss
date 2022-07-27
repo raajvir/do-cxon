@@ -1,0 +1,65 @@
+$theme-colors: (
+    "light": #FCFBF6,
+    "dark": #272727,
+    "primary": #4200FF,
+    "secondary": #5FFFBC,
+    "light-grey": #C5C5C5,
+    "dark-grey": #686868
+) !important;
+
+$light: #FCFBF6;
+$dark: #272727;
+$purple: #4200FF;
+$green: #5FFFBC;
+$light-grey: #C5C5C5;
+$dark-grey: #686868;
+
+
+
+
+/* .sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    margin-left: 0;
+    padding: 0;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+*/
+
+.navbar {
+    padding: 0 30px;
+    
+    .container-fluid {
+        padding: 0px;
+    }
+}
+
+.main {
+    padding: 0 30px;
+} 
+
+* {
+    font-family: 'Helvetica Neue';
+}
+
+#serif {
+    font-family: 'Test Tiempos Fine' !important;
+}

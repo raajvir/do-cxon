@@ -1,0 +1,27 @@
+.bgba {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: -9;
+}
+
+input,
+select,
+textarea {
+    width: 50% !important;
+}
+
+.form-group {
+    button {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 0;
+    }
+}
+
+.progress {
+    position: fixed;
+    top: 500px;
+    z-index: 2;
+}

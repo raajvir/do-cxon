@@ -1,42 +1,69 @@
 <!doctype html>
 {% load static %}
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 
-    <title>{% block title %}Connexion{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  </head>
-  <body>
-    
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
- 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <title>{% block title %}Connexion{% endblock %}</title>
+</head>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-
-      {% if user.is_authenticated %}
-
-       <a class="navbar-brand" href="{% url 'home' %}">Connexion</a>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'add_post' %}">List Idea</a>
-        </li>
-
-        <!--<li class="nav-item">
-          <a class="nav-link" href="{% url 'add_category' %}">Create New Tag</a>
-        </li>
-
-        {% if cat_menu %}
+<body>
+  <style>
+    body {
+      background: '{% static "thesite/images/mainbgcxon.png" %}';
+    }
+    h1 {
+      font-family: Test Tiempos Fine;
+      font-weight: 900;
+    }
+    nav {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.256);
+    }
+  </style>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}" style="margin: 0;">
+        <img class="d-inline-block align-text-top" src="{% static 'thesite/images/Frame 40sdfgsfdgs.png' %}" alt=""
+          srcset="" height="50px">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="padding-left: 0;">
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="">About Us</a></li>
+              <li><a class="dropdown-item" href="">Pricing</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'browse_post' %}">Browse Ideas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_post' %}">Add an idea</a>
+          </li>
+        </ul>
+        <hr>
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if cat_menu %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
               Tags
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -46,94 +73,74 @@
               {% endfor %}
             </div>
           </li>
-        {% else %} 
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'category-list' %}">Tags</a>
           </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link text-success" aria-current="page" href="{% url 'add_category' %}">Add category</a>
+          </li>
+        </ul>
+        <hr>
+        <div class="d-flex">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <img src="{% static 'thesite/images/Ellipse 30.png' %}" alt="" srcset="" height="30px"
+                style="margin-top: 5px;">
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Hi,
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'browse_post' %}">My Ideas</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        {% else %}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+          <li><a class="nav-link" href="">About Us</a></li>
+          </li>
+          <li class="nav-item">
+          <li><a class="nav-link" href="">Pricing</a></li>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+            <li>
+              <button class="btn btn-primary" id="register_btn">Register</button>
+            </li>
 
-        {% endif %}-->
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'browse_post' %}">Browse Ideas</a>
-        </li>
-
-        {% comment %} <li class="nav-item">
-          
-        </li> {% endcomment %}
-        <!-- fix link later-->
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'browse_post' %}">Credits</a>
-        </li>
-        <!-- fix link later-->
-
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ user.first_name }}
-            {{ user.last_name }}
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{% url 'my_ideas' %}">My Ideas</a>
-            <a class="dropdown-item" href="{% url 'discussions' %}">Discussion</a>
-            <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Settings</a>
-            {% if user.profile.id %}
-              <a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile Page</a>
-              <a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Show Profile Page</a>
-            {% else %}
-              <a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile Page</a>
-            {% endif %}
-          </div>
-        </li>
-
-      {% else %}
-      <a class="navbar-brand" href="{% url 'land' %}">Connexion</a>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">About Us</a>
-        </li> 
-
-        <!-- fix link later-->
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Pricing</a>
-        </li>
-      <!-- fix link later-->
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Login</a>
-        </li> 
-
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'register' %}">Register</a>
-        </li>
-
-      {% endif %}
-
-    </ul>
-
-    {% if user.is_authenticated %}
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-        </li> 
-      </ul>
-    {% endif %}
-  </div>
-</nav>
-
-    <br/>
-    <div class = "container">
-        {% block content %}
-
-        {% endblock %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
     </div>
-   
+  </nav>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
-</html>
+  <div id="content" , name="content" , class="main" style="margin-top: 80px;">
+    <!-- <div class="row"> -->
+    <!-- <div class="col-8"> -->
+    {% block content %}
+    {% endblock %}
+    <!-- </div> -->
+    <!-- </div> -->
+  </div>
+</body>
+<script>
+  document.getElementById("register_btn").onclick = function () {
+    location.href = "{% url 'register' %}";
+  };
+</script>
+
+</html><!--  -->

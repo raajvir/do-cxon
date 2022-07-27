@@ -3,21 +3,88 @@
 {% block title %}
 Register
 {% endblock %}
-
+{% load static %}
 {% block content %}
 
-    
-<h1>Register</h1>
-<br/>
-<br/>
 
- <div class="form-group">
+<h1>Register</h1>
+<br />
+<br />
+<style>
+    body {
+        /* background-color: aqua; */
+        background-image: url("{% static 'thesite/images/cxonbg.png' %}");
+        height: 100vh;
+        background-repeat: no-repeat;
+    }
+
+    #content {
+        background-color: white !important;
+        width: fit-content;
+        max-width: 95%;
+        padding: 30px;
+        border-radius: 10px;
+        /* border: 1px solid rgba(0, 0, 0, 0.104); */
+        box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.458);
+        position: relative;
+        top: 100px;
+        margin: auto;
+        bottom: 100px;
+    }
+
+    form {
+        width: max-content;
+        max-width: 100%;
+        margin: auto;
+        background-color: white !important;
+        height: max-content;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    br {
+        display: none;
+    }
+
+    .col-8 {
+        height: fit-content;
+        width: fit-content;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.135);
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    form button {
+        display: block;
+        width: max-content;
+        margin-left: 50%;
+        -ms-transform: translate(-50%);
+        transform: translate(-50%);
+        margin-top: 10px;
+    }
+</style>
+<div class="form-group">
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-secondary">Register</button>
     </form>
- </div>
+</div>
 
 
 

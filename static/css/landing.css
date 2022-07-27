@@ -1,0 +1,66 @@
+h1 {
+  font-size: 9vw !important;
+  font-family: "Tiempos Fine" !important;
+}
+
+.col-8 {
+  width: 100vw;
+}
+
+row {
+  width: 100vw;
+}
+
+.ff {
+  z-index: -1;
+  display: block;
+  position: relative;
+  /*   width: 70%;
+    height: auto;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+  width: 70vw;
+  height: auto;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.ffm {
+  display: none;
+}
+
+.stuff {
+  z-index: 99;
+  margin-top: -100px;
+  margin-left: 10vw;
+}
+
+.stuff button {
+  margin-right: 10px;
+}
+
+.stuff a {
+  color: darkgray !important;
+}
+
+@media screen and (max-width: 768px) {
+  .ff {
+    display: none !important;
+  }
+  .ffm {
+    display: block !important;
+    width: 105vw;
+    height: auto;
+    left: 48vw;
+  }
+  .stuff {
+    margin-top: 0px;
+    margin-left: 0vw;
+  }
+}
+/*# sourceMappingURL=landing.css.map */
