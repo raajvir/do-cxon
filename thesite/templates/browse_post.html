@@ -3,12 +3,13 @@
 
 <link rel="stylesheet" href="{% static 'css/browse_ideas.css' %}">
 
-<div class="row row-cols-4 justify-content-justify" style="width: fit-content; margin: auto; padding: auto;">
+<ul>
   {% for post in object_list %}
-  <div class="xx" style="width: 20rem;">
+  <li class="cards-item">
     <div class="card">
       {% if post.header_image %}
-      <img src="{{ post.header_image.url }}" class="card-img-top" alt="..." style="max-height: 250px; max-width: 350px;">
+      <img src="{{ post.header_image.url }}" class="card-img-top" alt="..."
+        style="max-height: 250px; max-width: 350px;">
       {% else %}
       <img src="https://dummyimage.com/350x250/000/fff.jpg" class="card-img-top" alt="...">
       {% endif %}
@@ -20,14 +21,13 @@
         <p class="card-text">{{ post.snippet|slice:":200"|safe }}</p>
         <div class="stuff">
           <a href="mailto:report@cxon.net" class="text-warning">Report</a>
-            <button class="btn btn-primary">View</button>
+          <button class="btn btn-primary">View</button>
         </div>
       </div>
     </div>
-  </div>
+  </li>
   {% endfor %}
-</div>
-
+</ul>
 
 
 
