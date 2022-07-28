@@ -6,14 +6,6 @@
 }
 
 .card-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
   margin-top: 20px;
 }
 
@@ -46,6 +38,12 @@
   background-color: #272727;
   color: #FCFBF6;
   margin-bottom: 20px !important;
+}
+
+.card img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-height: 250px;
 }
 
 .card .hori {
@@ -85,18 +83,10 @@
           align-items: center;
 }
 
-.xx {
-  padding: 20px !important;
-}
-
 .card-block {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-}
-
-.card-group .card img {
-  width: 100%;
 }
 
 .row {

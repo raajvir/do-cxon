@@ -3,21 +3,13 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/browse_ideas.css' %}">
+`
 <img class="ff" src="{% static 'thesite/images/cxonlanding.png' %}" alt="" srcset="">
 <img class="ffm" src="{% static 'thesite/images/cxonlandingmobile.png' %}" alt="" srcset="" style="display: none;">
 <style>
     h1 {
         font-size: 9vw !important;
         font-family: "Tiempos Fine" !important;
-    }
-
-    .col-8 {
-        width: 100vw;
-    }
-
-    row {
-        width: 100vw;
     }
 
     .ff {
@@ -35,17 +27,17 @@
         display: none;
     }
 
-    .stuff {
+    .bstuff {
         z-index: 99;
         margin-top: -100px;
         margin-left: 10vw;
     }
 
-    .stuff button {
+    .bstuff button {
         margin-right: 10px;
     }
 
-    .stuff a {
+    .bstuff a {
         color: darkgray !important;
     }
 
@@ -64,7 +56,7 @@
         }
     }
 </style>
-<div class="stuff">
+<div class="bstuff">
     <button class="btn btn-secondary" id="register_btn">Get Started</button>
     <a href="#ideas">Scroll to browse ideas</a>
 </div>
@@ -78,97 +70,48 @@
 <br>
 <hr>
 <br>
+<link rel="stylesheet" href="{% static 'css/browse_ideas.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+    integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+    async></script>
 
-<style>
-    .card-group {
-        margin-top: 20px;
-    }
-
-    .card {
-        background-color: #272727;
-        color: #FCFBF6;
-    }
-
-    .card .hori {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-    }
-
-    .card .hori h5 {
-        font-family: 'Test Tiempos Fine Black', serif;
-        height: 100%;
-    }
-
-    .card .stuff {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-    }
-
-    .card-block {
-        height: -webkit-max-content;
-        height: -moz-max-content;
-        height: max-content;
-    }
-
-    .card img {
-        width: 100%;
-    }
-
-    .row {
-        margin-bottom: 20px;
-    }
-
-    /*# sourceMappingURL=browse_ideas.css.map */
-</style>
-
-<div class="card-group">
-    <div class="row row-cols-2 justify-content">
-        {% for post in object_list %}
-        <!-- card -->
-        <!-- <a href="{% url 'article-detail' post.pk %}"> -->
-        <div class="card" style="width: 18rem;">
+<div class="row row-cols-1 row-cols-md-4 g-4" data-masonry='{"percentPosition": true }' style="z-index: 1;">
+    {% for post in object_list %}<div class="col">
+        <div class="card h-100">
             {% if post.header_image %}
             <img src="{{ post.header_image.url }}" class="card-img-top" alt="...">
+            {% else %}
+            <img src="https://dummyimage.com/350x250/000/fff.jpg" class="card-img-top" alt="...">
             {% endif %}
             <div class="card-body">
                 <div class="hori">
-                    <h5 class="card-title">{{ post.title }}</h5>
+                    <h5 class="card-title">{{post.title}}</h5>
                     <span><i class="fa-solid fa-heart"></i> {{ likes }}</span>
                 </div>
-                <p class="card-text">{{ post.description|slice:":200" }}</p>
+                <p class="card-text">{{ post.snippet|slice:":200"|safe }}</p>
+                <hr>
                 <div class="stuff">
                     <a href="mailto:report@cxon.net" class="text-warning">Report</a>
-                    <button class="btn btn-primary" onclick="window.location=''">View</button>
+                    <button class="btn btn-primary">View</button>
                 </div>
             </div>
         </div>
-        <!-- </a> -->
-        <!-- card -->
-        {% endfor %}
     </div>
+    {% endfor %}
 </div>
+<div class="boton">
+    <span><a href="{% url 'add_post' %}">Sign Up</a> to view more ideas</span>
+</div>
+<style>
+    .boton {
+        width: 100%;
+        text-align: center;
+        height: 100px;
+        margin-top: -100px;
+        z-index: 1000;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgb(247, 247, 247));
+    }
+</style>
 <!-- </div> -->
 
 {% endblock %}

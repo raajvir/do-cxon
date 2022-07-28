@@ -1,17 +1,15 @@
 {% extends 'base.html' %}{% load static %} {% block content %} {% if user.is_authenticated %}
 <h1>Browse Ideas</h1>
-<hr>
-<link rel="stylesheet" href="{% static 'css/browse_ideas.css' %}">
-<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
-  integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
-  async></script>
 
-<div class="row row-cols-1 row-cols-md-4 g-4" data-masonry='{"percentPosition": true }'>
+<link rel="stylesheet" href="{% static 'css/browse_ideas.css' %}">
+
+<ul>
   {% for post in object_list %}
-  <div class="col">
+  <li class="cards-item">
     <div class="card">
       {% if post.header_image %}
-      <img src="{{ post.header_image.url }}" class="card-img-top" alt="...">
+      <img src="{{ post.header_image.url }}" class="card-img-top" alt="..."
+        style="max-height: 250px; max-width: 350px;">
       {% else %}
       <img src="https://dummyimage.com/350x250/000/fff.jpg" class="card-img-top" alt="...">
       {% endif %}
@@ -21,16 +19,29 @@
           <span><i class="fa-solid fa-heart"></i> {{ likes }}</span>
         </div>
         <p class="card-text">{{ post.snippet|slice:":200"|safe }}</p>
-        <hr>
         <div class="stuff">
           <a href="mailto:report@cxon.net" class="text-warning">Report</a>
           <button class="btn btn-primary">View</button>
         </div>
       </div>
     </div>
-  </div>
+  </li><!-- 
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="..." class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div> -->
   {% endfor %}
-</div>
+</ul>
 
 
 
