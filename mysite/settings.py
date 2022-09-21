@@ -9,17 +9,20 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
-    # Add to this list all the locations containing your static files 
-)
+
 
 import mimetypes
 from pathlib import Path
 import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR,  'templates'),
+    # Add to this list all the locations containing your static files
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 mimetypes.add_type("text/css", ".css", True)
@@ -60,7 +63,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'mysite.urls'
