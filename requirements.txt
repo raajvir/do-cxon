@@ -11,4 +11,4 @@ tblib==1.6.0
 Werkzeug==1.0.1
 whitenoise==6.2.0
 Pillow==9.2.0
-heroku==0.1.4
+corsheaders==3.7.0
