@@ -39,13 +39,13 @@ SECRET_KEY = 'django-insecure-egx%e7j$el6c7$nnozu5jz_+-ku@$ku3b(2-+)fcfe4!vh4ruc
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '54.169.2.41',
-    '172.26.0.240'
+    'https://54.169.2.41',
+    'https://172.26.0.240'
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    '54.169.2.41',
-    '172.26.0.240'  # Allow all origins
+    'https://54.169.2.41',
+    'https://172.26.0.240'  # Allow all origins
 ]
 
 # Application definition
