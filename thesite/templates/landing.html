@@ -57,15 +57,15 @@
     }
 </style>
 <div class="bstuff">
-    <button class="btn btn-secondary" id="register_btn">Get Started</button>
+    <button class="btn btn-secondary" id="start_btn">Get Started</button>
     <a href="#ideas">Scroll to browse ideas</a>
 </div>
 <script>
-    document.getElementById("register_btn").onclick = function () {
+    document.getElementById("start_btn").onclick = function () {
         location.href = "{% url 'register' %}";
     };
 </script>
-
+<div id="ideas"></div>
 <br>
 <br>
 <hr>
@@ -75,7 +75,7 @@
     integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
     async></script>
 
-<div class="row row-cols-1 row-cols-md-4 g-4" data-masonry='{"percentPosition": true }' style="z-index: 1;">
+<div class="row row-cols-1 row-cols-md-4 g-4" data-masonry='{"percentPosition": true }' style="z-index: 1;" >
     {% for post in object_list %}<div class="col">
         <div class="card h-100">
             {% if post.header_image %}
@@ -99,6 +99,11 @@
     </div>
     {% endfor %}
 </div>
+<hr>
+<br>
+<br>
+<br>
+<br>
 <div class="boton">
     <span><a href="{% url 'add_post' %}">Sign Up</a> to view more ideas</span>
 </div>

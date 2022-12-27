@@ -40,7 +40,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'https://54.169.2.41',
-    'https://172.26.0.240'
+    'https://172.26.0.240',
+    '127.0.0.1'
 ]
 
 CORS_ALLOWED_ORIGINS = [
